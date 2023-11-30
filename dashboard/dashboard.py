@@ -33,9 +33,11 @@ st.markdown(
 )
 
 # vizualization: line chart for bike rentals in 2011 and 2012
+dtedayPD = pd.to_datetime(bike_day_df['dteday'])
+
 st.subheader("Bike Rentals in 2011 and 2012")
 fig, ax = plt.subplots(figsize=(8, 6))
-sns.lineplot(x="dteday", y="cnt", data=bike_day_df, hue="yr", palette="viridis", ax=ax)
+sns.lineplot(x=dtedayPD, y="cnt", data=bike_day_df, hue="yr", palette="viridis", ax=ax)
 plt.xlabel("Date")
 plt.ylabel("Total Bike Rentals")
 plt.title("Total Bike Rentals in 2011 and 2012")
