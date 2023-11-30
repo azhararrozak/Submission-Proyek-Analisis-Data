@@ -13,6 +13,4 @@ streamlit run dashboard.py
 ```
 
 ## URL Streamlit 
-```
 [klik here](https://npnjt7ebrttjzfes4sryyq.streamlit.app/)
-```
