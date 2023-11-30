@@ -15,12 +15,12 @@ st.write(bike_day_df.head())
 
 # Visualization: Bar plot for bike rentals based on weather situation
 st.subheader("Bike Rentals Based on Weather Condition")
-plt.figure(figsize=(8, 6))
-sns.barplot(x="weathersit", y="cnt", data=bike_day_df, palette="viridis")
+fig, ax = plt.subplots(figsize=(8, 6))
+sns.barplot(x="weathersit", y="cnt", data=bike_day_df, palette="viridis", ax=ax)
 plt.xlabel("Weather Situation")
 plt.ylabel("Total Bike Rentals")
 plt.title("Total Bike Rentals Based on Weather Condition")
-st.pyplot()
+st.pyplot(fig)
 
 # Additional information
 st.markdown("### Additional Information:")
@@ -31,3 +31,15 @@ st.markdown(
     "   - 3: Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds\n"
     "   - 4: Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog"
 )
+
+# vizualization: line chart for bike rentals in 2011 and 2012
+st.subheader("Bike Rentals in 2011 and 2012")
+fig, ax = plt.subplots(figsize=(8, 6))
+sns.lineplot(x="dteday", y="cnt", data=bike_day_df, hue="yr", palette="viridis", ax=ax)
+plt.xlabel("Date")
+plt.ylabel("Total Bike Rentals")
+plt.title("Total Bike Rentals in 2011 and 2012")
+plt.xticks(rotation=45)
+st.pyplot(fig)
+
+
