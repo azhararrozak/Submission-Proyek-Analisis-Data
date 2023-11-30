@@ -13,6 +13,12 @@ st.title("Dashboard: Analisis Data Peminjaman Sepeda")
 st.subheader("Dataset Preview")
 st.write(bike_day_df.head())
 
+# Tambahkan Sidebar with image
+st.sidebar.image("https://img.freepik.com/free-vector/bicycle-sport-recreation_138676-2035.jpg", width=300)
+st.sidebar.title("Learn Data Analyst")
+st.sidebar.markdown("Azhar Arrozak")
+
+
 # Visualisasi Peminjaman sepeda berdasarkan cuaca
 st.subheader("Bike Rentals Based on Weather Condition")
 fig, ax = plt.subplots(figsize=(8, 6))
@@ -42,5 +48,10 @@ plt.ylabel("Total Peminjaman Sepeda")
 plt.title("Tren Peminjaman Sepeda pada Tahun 2011 dan 2012")
 plt.xticks(rotation=45)
 st.pyplot(fig)
+
+# Tambahkan Footer CopyRight
+st.markdown("---")
+st.markdown("CopyRight © 2021 | Azhar Arrozak")
+
 
 
