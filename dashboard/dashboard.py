@@ -10,17 +10,17 @@ bike_day_df = pd.read_csv("https://raw.githubusercontent.com/azhararrozak/Submis
 st.title("Dashboard: Analisis Data Peminjaman Sepeda")
 
 # Menampilkan Dataset
-st.subheader("Dataset Preview")
+st.subheader("Dataset Peminjaman Sepeda")
 st.write(bike_day_df.head())
 
 # Tambahkan Sidebar with image
 st.sidebar.image("https://img.freepik.com/free-vector/bicycle-sport-recreation_138676-2035.jpg", width=300)
-st.sidebar.title("Learn Data Analyst")
+st.sidebar.title("Belajar Data Analisis")
 st.sidebar.markdown("Azhar Arrozak")
 
 
 # Visualisasi Peminjaman sepeda berdasarkan cuaca
-st.subheader("Bike Rentals Based on Weather Condition")
+st.subheader("Peminjaman Sepeda berdasarkan Kondisi Cuaca")
 fig, ax = plt.subplots(figsize=(8, 6))
 sns.barplot(x="weathersit", y="cnt", data=bike_day_df, palette="viridis", ax=ax)
 plt.xlabel("Kondisi Cuaca")
@@ -29,7 +29,7 @@ plt.title("Jumlah Pengguna Sepeda Berdasarkan Kondisi Cuaca")
 st.pyplot(fig)
 
 # Tambahan Informasi
-st.markdown("### Additional Information:")
+st.markdown("### Informasi Tambahan:")
 st.markdown(
     "**Weather Situation Codes:**\n"
     "   - 1: Clear\n"
