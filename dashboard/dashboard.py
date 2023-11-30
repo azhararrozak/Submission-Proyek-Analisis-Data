@@ -5,77 +5,29 @@ import matplotlib.pyplot as plt
 
 # Load data
 bike_day_df = pd.read_csv("https://raw.githubusercontent.com/azhararrozak/Submission-Proyek-Analisis-Data/main/dataset/day.csv")
-bike_day_df.head()
 
-sns.set_style('darkgrid')
-
-# Set title
+# Set page title
 st.title("Bike Sharing Data Dashboard")
 
-# Wheather rent bike
-def condition_weather_rent_df(df):
-    weather_condition = df.groupby(by='weathersit').agg({'cnt': 'sum'})
-    return weather_condition
+# Display the first few rows of the dataset
+st.subheader("Dataset Preview")
+st.write(bike_day_df.head())
 
-min_date = pd.to_datetime(bike_day_df['dteday']).dt.date.min()
-max_date = pd.to_datetime(bike_day_df['dteday']).dt.date.max
+# Visualization: Bar plot for bike rentals based on weather situation
+st.subheader("Bike Rentals Based on Weather Condition")
+plt.figure(figsize=(8, 6))
+sns.barplot(x="weathersit", y="cnt", data=bike_day_df, palette="viridis")
+plt.xlabel("Weather Situation")
+plt.ylabel("Total Bike Rentals")
+plt.title("Total Bike Rentals Based on Weather Condition")
+st.pyplot()
 
-start_date, end_date = st.date_input(
-        label='Rentang Waktu',
-        min_value= min_date,
-        max_value= max_date,
-        value=[min_date, max_date]
-    )
-
-
-main_df = bike_day_df[(bike_day_df['dteday'] >= str(start_date)) & 
-                (bike_day_df['dateday'] <= str(end_date))]
-
-weather_rent_df = condition_weather_rent_df(main_df)
-
-# Dashboard
-# Membuah jumlah penyewaan berdasarkan kondisi cuaca
-st.subheader('Weatherly Rentals')
-
-fig, ax = plt.subplots(figsize=(16, 8))
-
-colors=["tab:blue", "tab:orange", "tab:green"]
-
-sns.barplot(
-    x=weather_rent_df.index,
-    y=weather_rent_df['cnt'],
-    palette=colors,
-    ax=ax
+# Additional information
+st.markdown("### Additional Information:")
+st.markdown(
+    "1. **Weather Situation Codes:**\n"
+    "   - 1: Clear, Few clouds, Partly cloudy, Partly cloudy\n"
+    "   - 2: Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist\n"
+    "   - 3: Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds\n"
+    "   - 4: Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog"
 )
-
-for index, row in enumerate(weather_rent_df['cnt']):
-    ax.text(index, row + 1, str(row), ha='center', va='bottom', fontsize=12)
-
-ax.set_xlabel(None)
-ax.set_ylabel(None)
-ax.tick_params(axis='x', labelsize=20)
-ax.tick_params(axis='y', labelsize=15)
-st.pyplot(fig)
-
-"""
-# Line chart for temperature and total rentals
-st.subheader("Line Chart: Temperature vs Total Rentals")
-st.line_chart(bike_day_df[['temp', 'cnt']])
-
-# Bar chart for season-wise rentals
-st.subheader("Bar Chart: Season-wise Rentals")
-season_counts = bike_day_df['season'].value_counts()
-st.bar_chart(season_counts)
-
-# Scatter plot for temperature and total rentals
-st.subheader("Scatter Plot: Temperature vs Total Rentals")
-st.scatter_chart(bike_day_df[['temp', 'cnt']])
-
-# Histogram of total rentals
-st.subheader("Histogram: Total Rentals Distribution")
-st.hist(bike_day_df['cnt'], bins=30, edgecolor='black')
-st.xlabel("Total Rentals")
-st.ylabel("Frequency")
-
-# Show the dashboard
-st.show()"""
