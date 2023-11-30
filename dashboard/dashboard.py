@@ -17,6 +17,8 @@ st.write(bike_day_df.head())
 st.sidebar.image("https://img.freepik.com/free-vector/bicycle-sport-recreation_138676-2035.jpg", width=300)
 st.sidebar.title("Belajar Data Analisis")
 st.sidebar.markdown("Azhar Arrozak")
+st.sidebar.markdown("---")
+st.sidebar.markdown("[![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/azhararrozak/)")
 
 
 # Visualisasi Peminjaman sepeda berdasarkan cuaca
@@ -51,7 +53,7 @@ st.pyplot(fig)
 
 # Tambahkan Footer CopyRight
 st.markdown("---")
-st.markdown("CopyRight © 2021 | Azhar Arrozak")
+st.markdown("CopyRight © 2023 | Azhar Arrozak")
 
 
 
